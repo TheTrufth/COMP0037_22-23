@@ -18,10 +18,20 @@ from bandits.bandit import BanditEnvironment
 # form specified below
 
 def run_bandits(environment, number_of_steps):
-
-    b = 0
-    rewards = np.zeros(1)
-    print(f'bandit = {b}, mean = {np.mean(rewards)}, sigma = {np.std(rewards)}')
+    
+    for i in range(environment.number_of_bandits()):
+        b = environment.bandit(i)
+        rewards = np.zeros(number_of_steps)
+        for s in range(number_of_steps):
+            obs, reward, done, info = environment.step(i)
+            rewards[s] = reward
+        print(f'bandit = {i}, mean = {np.mean(rewards)}, sigma = {np.std(rewards)}')
+        
+        
+    # environment.bandit(1)
+    # b = 0
+    # rewards = np.zeros(1)
+    # print(f'bandit = {b}, mean = {np.mean(rewards)}, sigma = {np.std(rewards)}')
         
 if __name__ == '__main__':
     

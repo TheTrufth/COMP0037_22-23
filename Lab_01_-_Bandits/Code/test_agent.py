@@ -38,10 +38,21 @@ if __name__ == '__main__':
         
     # Q3b:
     # Plot the actions and rewards
+    # Generate the reward plot
+    for s in range(number_of_steps):
+        action_history[s], reward_history[s] = agent.step()
 
+    plt.xlabel('Sample number')
+    plt.ylabel('Reward')
+    plt.plot(reward_history, color = 'red', label = 'Reward')
     plt.figure(1)
 
-    plt.figure(2)
+    plt.figure(2)   
+    plt.xlabel('Sample number')
+    plt.ylabel('Action')
+    print(action_history[:20])
+    plt.scatter(np.arange(number_of_steps), action_history, color = 'blue', label = 'Reward', marker='o')
+
     
     plt.ion()
     plt.show()

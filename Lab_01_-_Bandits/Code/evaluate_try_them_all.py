@@ -51,7 +51,20 @@ if __name__ == '__main__':
     # Q4a:
     # Plot the % optimal actions
     percentage_correct_actions = compute_percentage_of_optimal_actions_selected(environment, action_history)
-    
+    plt.figure(1)   
+    plt.xlabel('Sample number')
+    plt.ylabel('percentage of correct actions')
+    plt.scatter(np.arange(number_of_steps), percentage_correct_actions, color = 'blue', marker='o')
+
     # Q4c:
     # Plot the regret curves
     regret = compute_regret(environment, reward_history)
+    plt.figure(2)   
+    plt.xlabel('Sample number')
+    plt.ylabel('Regret')
+    plt.scatter(np.arange(number_of_steps), regret, color = 'red', marker='o')
+
+    plt.ion()
+    plt.show()
+    plt.pause(0.001)
+    input()

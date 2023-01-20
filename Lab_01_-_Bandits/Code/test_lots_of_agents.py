@@ -32,9 +32,9 @@ if __name__ == '__main__':
     # Create the agent
     #agent = TryThemAllAgent(environment, 5)
     
-    #agent = EpsilonGreedyAgent(environment, 0.1)
+    agent = EpsilonGreedyAgent(environment, 0.1)
     
-    agent = DampedEpsilonGreedyAgent(environment, 0.1)
+    # agent = DampedEpsilonGreedyAgent(environment, 0.1)
 
     #agent = UpperConfidenceBoundAgent(environment, 0.1)
     

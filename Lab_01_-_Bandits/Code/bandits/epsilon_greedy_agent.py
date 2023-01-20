@@ -5,7 +5,7 @@ Created on 14 Jan 2022
 '''
 
 import numpy as np
-
+import random
 from .agent import Agent
 
 class EpsilonGreedyAgent(Agent):
@@ -17,7 +17,12 @@ class EpsilonGreedyAgent(Agent):
     # Q5a:
     # Change the implementation to use the epsilon greedy algorithm
     def _choose_action(self):
-        action = 0
-        return action
+        c = random.uniform(0, 1)
+        if self._epsilon < c:
+            return self._environment.optimal_action()[0]
+        return self._environment.action_space.sample()
+
+        
+    
             
         

@@ -17,11 +17,12 @@ class RandomActionAgent(Agent):
     # class. However, I personally prefer to include the class to
     # remind myself of what the constructor is doing.
     def __init__(self, environment):
+        
         super().__init__(environment)
         
     # Q3a:
     # Choose a random action the agent will perform
     def _choose_action(self):
-        return 0
+        return self._environment.action_space.sample()
 
         

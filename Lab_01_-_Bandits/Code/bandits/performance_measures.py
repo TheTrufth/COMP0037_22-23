@@ -34,7 +34,7 @@ def compute_percentage_of_optimal_actions_selected(environment, action_history):
 def compute_regret(environment, reward_history):
     
     # Work out the optimal action
-    optimal_action, optimal_reward = 0, 0
+    optimal_action, optimal_reward = environment.optimal_action()
     
     num_actions_taken = len(reward_history)
     
