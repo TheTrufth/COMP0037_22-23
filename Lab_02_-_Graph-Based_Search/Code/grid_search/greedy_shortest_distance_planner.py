@@ -1,4 +1,4 @@
-from math import sqrt
+from math import sqrt, dist
 from queue import PriorityQueue
 
 from .planner_base import PlannerBase
@@ -18,11 +18,13 @@ class GreedyShortestDistancePlanner(PlannerBase):
         # Complete the implementation of the priority queue with the
         # priority p being the Euclidean distance from the cell to
         # the goal.
+        p = dist(self.goal.coords(), cell.coords())
 
         # Q4b:
         # Change the priority to 10^6-p.
         
-        self._priority_queue.put((0, cell))
+        # self._priority_queue.put((p, cell))
+        self._priority_queue.put(((10 ** 6) - p, cell))
 
     # Check the queue size is zero
     def is_queue_empty(self):

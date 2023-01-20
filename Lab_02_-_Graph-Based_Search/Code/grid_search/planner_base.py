@@ -90,21 +90,31 @@ class PlannerBase(object):
         #Q3b
         # Modify so that the cells are visited in a different sequence.
         # Investigate the impact of changing the search order on the computed path
-
+        self.push_back_candidate_cell_if_valid(cell, cells, -1, 0)
+        self.push_back_candidate_cell_if_valid(cell, cells, 1, 0)
+        self.push_back_candidate_cell_if_valid(cell, cells, -1, -1)
+        self.push_back_candidate_cell_if_valid(cell, cells, -1, 1)
+        self.push_back_candidate_cell_if_valid(cell, cells, 0, -1)
+        self.push_back_candidate_cell_if_valid(cell, cells, 1, 1)
+        self.push_back_candidate_cell_if_valid(cell, cells, 0, 1)
+        self.push_back_candidate_cell_if_valid(cell, cells, 1, -1)
+        
+        
+        
         # Go through all the neighbours and add the cells if they
         # don't fall outside the grid and they aren't the cell we
         # started with. The order has been manually written down to
         # create a spiral.
 
         # The swapped order video transposed the last four transitions first
-        self.push_back_candidate_cell_if_valid(cell, cells, 0, -1)
-        self.push_back_candidate_cell_if_valid(cell, cells, 1, -1)
-        self.push_back_candidate_cell_if_valid(cell, cells, 1, 0)
-        self.push_back_candidate_cell_if_valid(cell, cells, 1, 1)
-        self.push_back_candidate_cell_if_valid(cell, cells, 0, 1)
-        self.push_back_candidate_cell_if_valid(cell, cells, -1, 1)
-        self.push_back_candidate_cell_if_valid(cell, cells, -1, 0)
-        self.push_back_candidate_cell_if_valid(cell, cells, -1, -1)
+        # self.push_back_candidate_cell_if_valid(cell, cells, 0, -1)
+        # self.push_back_candidate_cell_if_valid(cell, cells, 1, -1)
+        # self.push_back_candidate_cell_if_valid(cell, cells, 1, 0)
+        # self.push_back_candidate_cell_if_valid(cell, cells, 1, 1)
+        # self.push_back_candidate_cell_if_valid(cell, cells, 0, 1)
+        # self.push_back_candidate_cell_if_valid(cell, cells, -1, 1)
+        # self.push_back_candidate_cell_if_valid(cell, cells, -1, 0)
+        # self.push_back_candidate_cell_if_valid(cell, cells, -1, -1)
 
         return cells
 
@@ -245,7 +255,9 @@ class PlannerBase(object):
 
         # Q2a:
         # Add code to construct the rest of the path
-
+        while cell.parent:
+            path.waypoints.append(cell)
+            cell = cell.parent
         # Now mark the cells as being on the path and show them. We do
         # this as a separate step to show going from the start to the goal
         for waypoint in path.waypoints:
@@ -267,6 +279,14 @@ class PlannerBase(object):
 
         # Q2b: For the path, work out the length and the
         # number of cells traversed
+        i = 0
+        while i < len(path.waypoints) - 1:
+            path_cost += math.dist(path.waypoints[i+1].coords(), path.waypoints[i].coords())
+            i += 1
+    
+        print("Num. of cells:", len(path.waypoints))
+        print("Path cost:", path_cost)
+        
 
         # Return the path
         return path

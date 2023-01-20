@@ -40,7 +40,7 @@ planner.plan(start, goal)
 search_grid_drawer = planner.search_grid_drawer()
     
 # Pause
-search_grid_drawer.wait_for_key_press()
+# search_grid_drawer.wait_for_key_press()
     
 # Show the path
 planner.extract_path_to_goal()
